@@ -1,7 +1,7 @@
 # SSD-EMB: An Improved SSD using Enhanced Feature Map Block for Object Detection
 This is implementtation of SSD-EMB from Hong-Tae Choi, Ho-Jun Lee, Hoon Kang, Sungwook Yu, and Ho-Hyun Park.
 This code is heavily depend on [here](https://github.com/amdegroot/ssd.pytorch).
-Thanks deGroot.
+Thank you to deGroot and his team.
 ## Environment
 Python 3.x
 
@@ -57,6 +57,27 @@ wget https://s3.amazonaws.com/amdegroot-models/vgg16_reducedfc.pth
 python train.py
 ```
 
+- Training Parameter Options: 
+
+```Python
+parser = argparse.ArgumentParser(description='Single Shot MultiBox Detector Training')
+parser.add_argument('--version', default='v2', help='conv11_2(v2) or pool6(v1) as last layer')
+parser.add_argument('--basenet', default='vgg16_reducedfc.pth', help='pretrained base model')
+parser.add_argument('--jaccard_threshold', default=0.5, type=float, help='Min Jaccard index for matching')
+parser.add_argument('--batch_size', default=32, type=int, help='Batch size for training')
+parser.add_argument('--num_workers', default=4, type=int, help='Number of workers used in dataloading')
+parser.add_argument('--iterations', default=120000, type=int, help='Number of training epochs')
+parser.add_argument('--cuda', default=True, type=bool, help='Use cuda to train model')
+parser.add_argument('--lr', '--learning-rate', default=1e-3, type=float, help='initial learning rate')
+parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
+parser.add_argument('--weight_decay', default=5e-4, type=float, help='Weight decay for SGD')
+parser.add_argument('--gamma', default=0.1, type=float, help='Gamma update for SGD')
+parser.add_argument('--log_iters', default=True, type=bool, help='Print the loss at each iteration')
+parser.add_argument('--visdom', default=False, type=bool, help='Use visdom to for loss visualization')
+parser.add_argument('--save_folder', default='weights/', help='Location to save checkpoint models')
+args = parser.parse_args()
+```
+
 ## Evaluation
 To evaluate a trained network:
 
@@ -78,3 +99,10 @@ You can specify the parameters listed in the `eval.py` file by flagging them or 
 
 ##### FPS
 **RTX 2080Ti:** ~30 FPS
+
+## References
+- Wei Liu, et al. "SSD: Single Shot MultiBox Detector." [ECCV2016]((http://arxiv.org/abs/1512.02325)).
+- [Original SSD Implementation (CAFFE)](https://github.com/weiliu89/caffe/tree/ssd)
+- A huge thank you to [Alex Koltun](https://github.com/alexkoltun) and his team at [Webyclip](http://www.webyclip.com) for their help in finishing the data augmentation portion.
+- A list of other great SSD ports that were sources of inspiration (especially the Chainer repo):
+  * [Chainer](https://github.com/Hakuyume/chainer-ssd), [Keras](https://github.com/rykov8/ssd_keras), [MXNet](https://github.com/zhreshold/mxnet-ssd), [Tensorflow](https://github.com/balancap/SSD-Tensorflow)
