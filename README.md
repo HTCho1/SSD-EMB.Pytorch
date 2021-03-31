@@ -96,6 +96,10 @@ parser.add_argument('--save_folder', default='weights/',
 args = parser.parse_args()
 ```
 
+- Note:
+  * For training, an NVIDIA GPU is strongly recommended for speed.
+  * You can pick-up training from a checkpoint by specifying the path as one of the training parameters (again, see `train.py` for options)
+
 ## Evaluation
 To evaluate a trained network:
 
