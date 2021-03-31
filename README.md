@@ -1,8 +1,6 @@
 # SSD-EMB: An Improved SSD using Enhanced Feature Map Block for Object Detection
 This is implementtation of SSD-EMB from Hong-Tae Choi, Ho-Jun Lee, Hoon Kang, Sungwook Yu, and Ho-Hyun Park.
-
 This code is heavily depend on [here](https://github.com/amdegroot/ssd.pytorch).
-
 Thanks deGroot.
 ## Environment
 Python 3.x
@@ -44,8 +42,7 @@ cd data/scripts
 sh VOC2012.sh # <directory>
 ```
 ## Train
-- First download the fc-reduced [VGG-16](https://arxiv.org/abs/1409.1556) PyTorch base network weights at:
-  https://s3.amazonaws.com/amdegroot-models/vgg16_reducedfc.pth
+- First download the fc-reduced [VGG-16](https://arxiv.org/abs/1409.1556) PyTorch base network weights at: https://s3.amazonaws.com/amdegroot-models/vgg16_reducedfc.pth
 - By default, we assume you have downloaded the file in the `ssd.pytorch/weights` dir:
 
 ```Shell
