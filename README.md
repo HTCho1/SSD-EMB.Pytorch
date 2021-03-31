@@ -87,7 +87,7 @@ python eval.py
 
 You can specify the parameters listed in the `eval.py` file by flagging them or manually changing them.
 
-<img align="left" src= "https://github.com/HTCho1/SSD-EMB.Pytorch/blob/master/doc/comparison of bboxes.PNG">
+<img align="left" src= "https://github.com/HTCho1/SSD-EMB.Pytorch/doc/comparison of bboxes.PNG">
 
 ## Performance
 
