@@ -56,3 +56,25 @@ wget https://s3.amazonaws.com/amdegroot-models/vgg16_reducedfc.pth
 ```Shell
 python train.py
 ```
+
+## Evaluation
+To evaluate a trained network:
+
+```Shell
+python eval.py
+```
+
+You can specify the parameters listed in the `eval.py` file by flagging them or manually changing them.  
+
+## Performance
+
+#### VOC 2007 test set
+
+##### mAP
+
+| SSD300-EMB | SSD512-EMB |
+|:-:|:-:|
+| 78.4 % | 80.4 % |
+
+##### FPS
+**RTX 2080Ti:** ~30 FPS
