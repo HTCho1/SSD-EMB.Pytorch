@@ -60,21 +60,39 @@ python train.py
 - Training Parameter Options: 
 
 ```Python
-parser = argparse.ArgumentParser(description='Single Shot MultiBox Detector Training')
-parser.add_argument('--version', default='v2', help='conv11_2(v2) or pool6(v1) as last layer')
-parser.add_argument('--basenet', default='vgg16_reducedfc.pth', help='pretrained base model')
-parser.add_argument('--jaccard_threshold', default=0.5, type=float, help='Min Jaccard index for matching')
-parser.add_argument('--batch_size', default=32, type=int, help='Batch size for training')
-parser.add_argument('--num_workers', default=4, type=int, help='Number of workers used in dataloading')
-parser.add_argument('--iterations', default=120000, type=int, help='Number of training epochs')
-parser.add_argument('--cuda', default=True, type=bool, help='Use cuda to train model')
-parser.add_argument('--lr', '--learning-rate', default=1e-3, type=float, help='initial learning rate')
-parser.add_argument('--momentum', default=0.9, type=float, help='momentum')
-parser.add_argument('--weight_decay', default=5e-4, type=float, help='Weight decay for SGD')
-parser.add_argument('--gamma', default=0.1, type=float, help='Gamma update for SGD')
-parser.add_argument('--log_iters', default=True, type=bool, help='Print the loss at each iteration')
-parser.add_argument('--visdom', default=False, type=bool, help='Use visdom to for loss visualization')
-parser.add_argument('--save_folder', default='weights/', help='Location to save checkpoint models')
+parser = argparse.ArgumentParser(
+    description='SSD-EMB Training With Pytorch')
+train_set = parser.add_mutually_exclusive_group()
+parser.add_argument('--input', default=300, type=int, choices=[300, 512],
+                    help='SSD input size, currently support ssd300 and ssd512')
+parser.add_argument('--dataset', default='VOC', choices=['VOC', 'COCO'],
+                    type=str, help='VOC or COCO')
+parser.add_argument('--dataset_root', default=VOC_ROOT,
+                    help='Dataset root directory path')
+parser.add_argument('--basenet', default='vgg16_reducedfc.pth',
+                    help='Pretrained base model')
+parser.add_argument('--batch_size', default=32, type=int,
+                    help='Batch size for training')
+parser.add_argument('--resume', default=None, type=str,
+                    help='Checkpoint state_dict file to resume training from')
+parser.add_argument('--start_iter', default=0, type=int,
+                    help='Resume training at this iter')
+parser.add_argument('--num_workers', default=4, type=int,
+                    help='Number of workers used in dataloading')
+parser.add_argument('--cuda', default=True, type=str2bool,
+                    help='Use CUDA to train model')
+parser.add_argument('--lr', '--learning-rate', default=1e-3, type=float,
+                    help='initial learning rate')
+parser.add_argument('--momentum', default=0.9, type=float,
+                    help='Momentum value for optim')
+parser.add_argument('--weight_decay', default=5e-4, type=float,
+                    help='Weight decay for SGD')
+parser.add_argument('--gamma', default=0.1, type=float,
+                    help='Gamma update for SGD')
+parser.add_argument('--visdom', default=False, type=str2bool,
+                    help='Use visdom for loss visualization')
+parser.add_argument('--save_folder', default='weights/',
+                    help='Directory for saving checkpoint models')
 args = parser.parse_args()
 ```
 
